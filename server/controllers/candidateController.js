@@ -1,4 +1,5 @@
 const pool = require('../config/db');
+const sendSMS = require('../config/twilio');
 
 // Create new candidate application
 const applyCandidate = async (req, res) => {
@@ -85,6 +86,13 @@ const scheduleInterview = async (req, res) => {
       'UPDATE candidates SET status = $1, updated_at = NOW() WHERE id = $2',
       ['interview', id]
     );
+    const candidate = await pool.query('SELECT * FROM candidates WHERE id = $1', [id]);
+    if (candidate.rows[0].phone) {
+      const date = new Date(scheduled_at).toLocaleString();
+      await sendSMS(candidate.rows[0].phone,
+        `Hi ${candidate.rows[0].full_name}! Your interview has been scheduled for ${date}. Good luck!`
+      );
+    }
     res.json(result.rows[0]);
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -125,6 +133,12 @@ const logTraining = async (req, res) => {
         'UPDATE candidates SET status = $1, updated_at = NOW() WHERE id = $2',
         ['incubation', id]
       );
+      const candidate = await pool.query('SELECT * FROM candidates WHERE id = $1', [id]);
+      if (candidate.rows[0].phone) {
+        await sendSMS(candidate.rows[0].phone,
+          `Congratulations ${candidate.rows[0].full_name}! You passed training and have entered the 5-day incubation period. Keep it up!`
+        );
+      }
     }
     res.json(result.rows[0]);
   } catch (err) {
