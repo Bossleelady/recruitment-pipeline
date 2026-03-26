@@ -6,6 +6,8 @@ import Dashboard from './pages/Dashboard';
 import Candidates from './pages/Candidates';
 import CandidateDetail from './pages/CandidateDetail';
 import Apply from './pages/Apply';
+import InterviewSchedule from './pages/InterviewSchedule';
+import Incubation from './pages/Incubation';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
           <Route path="/candidates" element={<ProtectedRoute><Candidates /></ProtectedRoute>} />
           <Route path="/candidates/:id" element={<ProtectedRoute><CandidateDetail /></ProtectedRoute>} />
+          <Route path="/interviews" element={<ProtectedRoute><InterviewSchedule /></ProtectedRoute>} />
+          <Route path="/incubation" element={<ProtectedRoute><Incubation /></ProtectedRoute>} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

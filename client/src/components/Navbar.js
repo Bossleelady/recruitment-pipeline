@@ -16,6 +16,8 @@ const Navbar = () => {
       <div style={styles.links}>
         <Link to="/dashboard" style={styles.link}>Dashboard</Link>
         <Link to="/candidates" style={styles.link}>Candidates</Link>
+        <Link to="/interviews" style={styles.link}>Interviews</Link>
+        <Link to="/incubation" style={styles.link}>Incubation</Link>
         <span style={styles.user}>👤 {user?.name}</span>
         <button onClick={handleLogout} style={styles.button}>Logout</button>
       </div>
@@ -24,12 +26,12 @@ const Navbar = () => {
 };
 
 const styles = {
-  nav: { display:'flex', justifyContent:'space-between', alignItems:'center', padding:'1rem 2rem', backgroundColor:'#1a1a2e', color:'white' },
-  brand: { color:'white', textDecoration:'none', fontWeight:'bold', fontSize:'1.2rem' },
-  links: { display:'flex', alignItems:'center', gap:'1.5rem' },
-  link: { color:'#a0aec0', textDecoration:'none' },
-  user: { color:'#68d391' },
-  button: { backgroundColor:'#e53e3e', color:'white', border:'none', padding:'0.4rem 1rem', borderRadius:'4px', cursor:'pointer' }
+  nav: { display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '1rem 2rem', backgroundColor: '#1a1a2e', color: 'white' },
+  brand: { color: 'white', textDecoration: 'none', fontWeight: 'bold', fontSize: '1.2rem' },
+  links: { display: 'flex', alignItems: 'center', gap: '1.5rem' },
+  link: { color: '#a0aec0', textDecoration: 'none' },
+  user: { color: '#68d391' },
+  button: { backgroundColor: '#e53e3e', color: 'white', border: 'none', padding: '0.4rem 1rem', borderRadius: '4px', cursor: 'pointer' }
 };
 
 export default Navbar;
